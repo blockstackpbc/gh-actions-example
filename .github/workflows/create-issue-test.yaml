@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Create Issue for Firefox Manual Step 
-        continue-on-error: true
         id: publish-firefox-issue
         uses: bramiller1989/issue-action@v1
         with:

@@ -24,24 +24,15 @@ jobs:
       - publish_firefox_extension
     steps:
       - name: Create Issue for Firefox Manual Step 
-        id: publish-firefox-issue
-        uses: bramiller1989/open-issue@v1
+        id: create-firefox-issue
+        uses: JasonEtco/create-an-issue@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          token: ${{ github.token }}
-          title: Publish Firefox Extension
-          body: | 
-            1. Add "Version notes" with the same content as found in [the CHANGELOG.md file](https://github.com/blockstack/stacks-wallet-web/blob/main/CHANGELOG.md) for the release.
-            2. Add the following for "Notes for Reviewers": 
-              Please use this command to build the extension with Docker:
-                    docker build -f Dockerfile -t stacks-wallet-web . \
-                    && docker run -d --name stacks-wallet-web stacks-wallet-web \
-                    && docker cp stacks-wallet-web:stacks-wallet-chromium.zip . \
-                    && docker rm -f stacks-wallet-web
-              You can test the extension by selecting "Get started" on https://boom.money.
-            3. Download [the ZIP file](https://github.com/blockstack/stacks-wallet-web/archive/refs/heads/main.zip) of the repository main branch and upload to "Source code".
-            4. Submit by clicking "Save changes".
-
+          filename: .github/FIREFOX_ISSUE_TEMPLATE.md
+          update_existing: true
+        
       - name: Publish Statuses
-        run: |
-          echo ${{ steps.publish-firefox-issue.outputs.issue }} > issue.json
-          echo "Firefox Publish Issue: $(jq '.url' ${{ steps.publish-firefox-issue.outputs.issue }})"
+        - run: |
+        echo Created issue number ${{ steps.create-firefox-issue.outputs.number }}
+        echo Created ${{ steps.create-firefox-issue.outputs.url }}

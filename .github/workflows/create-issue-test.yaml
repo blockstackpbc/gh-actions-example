@@ -18,7 +18,7 @@ jobs:
     steps:
       - name: Create Issue for Firefox Manual Step 
         id: publish-firefox-issue
-        uses: bramiller1989/open-issuen@v1
+        uses: bramiller1989/open-issue@v1
         with:
           token: ${{ github.token }}
           title: Publish Firefox Extension

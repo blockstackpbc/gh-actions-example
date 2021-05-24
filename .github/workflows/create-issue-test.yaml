@@ -37,6 +37,8 @@ jobs:
               You can test the extension by selecting "Get started" on https://boom.money.
             3. Download [the ZIP file](https://github.com/blockstack/stacks-wallet-web/archive/refs/heads/main.zip) of the repository's main branch and upload to "Source code".
             4. Submit by clicking "Save changes".
+
       - name: Publish Statuses
         run: |
-          echo "Firefox Publish Issue: ${{ steps.publish-firefox-issue.outputs.issue.url }}"
+          issue_url=$( ${{ steps.publish-firefox-issue.outputs }} | jq '.url' )
+          echo "Firefox Publish Issue: $issue_url"

@@ -26,6 +26,7 @@ jobs:
         with:
           filename: .github/FIREFOX_ISSUE_TEMPLATE.md
           update_existing: true
+      - name: Publish Statuses
         run: |
-          echo "Created issue number ${{ steps.create-firefox-issue.outputs.number }}"
-          echo "Created ${{ steps.create-firefox-issue.outputs.url }}"
+          echo "Created issue number: ${{ steps.create-firefox-issue.outputs.number }}"
+          echo "Created: ${{ steps.create-firefox-issue.outputs.url }}"

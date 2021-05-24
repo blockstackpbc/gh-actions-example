@@ -1,5 +1,5 @@
 ---
-title: Publish Firefox Extension2
+title: Publish Firefox Extension
 ---
 1. Add "Version notes" with the same content as found in [the CHANGELOG.md file](https://github.com/blockstack/stacks-wallet-web/blob/main/CHANGELOG.md) for the release.
 2. Add the following for "Notes for Reviewers": 

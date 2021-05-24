@@ -33,6 +33,7 @@ jobs:
           update_existing: true
         
       - name: Publish Statuses
-        - run: |
-        echo Created issue number ${{ steps.create-firefox-issue.outputs.number }}
-        echo Created ${{ steps.create-firefox-issue.outputs.url }}
+        run: |
+          echo Created issue number ${{ steps.create-firefox-issue.outputs.number }}
+          echo Created ${{ steps.create-firefox-issue.outputs.url }}
+

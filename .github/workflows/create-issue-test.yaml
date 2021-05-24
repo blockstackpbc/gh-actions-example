@@ -39,4 +39,4 @@ jobs:
             4. Submit by clicking "Save changes".
       - name: Publish Statuses
         run: |
-          echo "Firefox Publish Issue: ${{ steps.publish-firefox-issue.outputs.issue }}"
+          echo "Firefox Publish Issue: ${{ steps.publish-firefox-issue.outputs.issue.url }}"

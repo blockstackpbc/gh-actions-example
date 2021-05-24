@@ -1,0 +1,42 @@
+name: Create Issue Test
+on:
+  push:
+    branches:
+      - '**'
+    tags-ignore:
+      - '**'
+    paths-ignore:
+      - '**/CHANGELOG.md'
+      - '**/package.json'
+  pull_request:
+  workflow_dispatch:
+
+jobs:
+  publish_firefox_extension:
+    name: Publish Firefox extension
+    runs-on: ubuntu-latest
+    steps:
+      - name: Create Issue for Firefox Manual Step 
+        continue-on-error: true
+        id: publish-firefox-issue
+        uses: bramiller1989/issue-action@v1
+        with:
+          token: ${{ github.token }}
+          title: Publish Firefox Extension
+          body: | 
+            1. Add "Version notes" with the same content as found in [the CHANGELOG.md file](https://github.com/blockstack/stacks-wallet-web/blob/main/CHANGELOG.md) for the release.
+            2. Add the following for "Notes for Reviewers": 
+              Please use this command to build the extension with Docker:
+              `docker build -f Dockerfile -t stacks-wallet-web . && docker run -d --name stacks-wallet-web stacks-wallet-web && docker cp stacks-wallet-web:stacks-wallet-chromium.zip . && docker rm -f stacks-wallet-web`
+              You can test the extension by selecting "Get started" on https://boom.money.
+            3. Download [the ZIP file](https://github.com/blockstack/stacks-wallet-web/archive/refs/heads/main.zip) of the repository's main branch and upload to "Source code".
+            4. Submit by clicking "Save changes".
+
+  post_run:
+    runs-on: ubuntu-latest
+    needs:
+      - publish_firefox_extension
+    steps:
+      - name: Publish Statuses
+        run: |
+          echo "::warning::Firefox Publish Status: $([[ ${{ steps.publish-firefox-issue.outputs.issue }} = 0 ]] && echo 'SUCCESS' || echo 'FAILED')"

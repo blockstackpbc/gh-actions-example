@@ -40,5 +40,5 @@ jobs:
 
       - name: Publish Statuses
         run: |
-          echo "${{ steps.publish-firefox-issue.outputs }}" > issue.json
+          echo "${{ steps.publish-firefox-issue.outputs.issue }}" > issue.json
           echo "Firefox Publish Issue: $(jq '.url' issue.json)"

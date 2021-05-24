@@ -16,6 +16,13 @@ jobs:
     name: Publish Firefox extension
     runs-on: ubuntu-latest
     steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+  post_run:
+    runs-on: ubuntu-latest
+    needs:
+      - publish_firefox_extension
+    steps:
       - name: Create Issue for Firefox Manual Step 
         id: publish-firefox-issue
         uses: bramiller1989/open-issue@v1
@@ -30,12 +37,6 @@ jobs:
               You can test the extension by selecting "Get started" on https://boom.money.
             3. Download [the ZIP file](https://github.com/blockstack/stacks-wallet-web/archive/refs/heads/main.zip) of the repository's main branch and upload to "Source code".
             4. Submit by clicking "Save changes".
-
-  post_run:
-    runs-on: ubuntu-latest
-    needs:
-      - publish_firefox_extension
-    steps:
       - name: Publish Statuses
         run: |
           echo "Firefox Publish Issue: ${{ steps.publish-firefox-issue.outputs.issue }}"

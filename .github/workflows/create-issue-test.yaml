@@ -38,4 +38,4 @@ jobs:
     steps:
       - name: Publish Statuses
         run: |
-          echo "::warning::Firefox Publish Status: $([[ ${{ steps.publish-firefox-issue.outputs.issue }} = 0 ]] && echo 'SUCCESS' || echo 'FAILED')"
+          echo "Firefox Publish Issue: ${{ steps.publish-firefox-issue.outputs.issue }}"

@@ -31,7 +31,7 @@ jobs:
         uses: peter-evans/create-or-update-project-card@v1
         with:
           project-name: Test Kanban
-          column-name: Backlog
+          column-name: 📥 Backlog
           issue-number: ${{ steps.create-firefox-issue.outputs.number }}
 
       - name: Firefox Issue Status

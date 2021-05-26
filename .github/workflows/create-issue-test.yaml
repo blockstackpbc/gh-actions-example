@@ -32,7 +32,7 @@ jobs:
         with:
           token: ${{ secrets.GH_TOKEN }}
           project-location: hirosystems
-          project-name: Test Kanban
+          project-name: 👟 UserX Kanban
           column-name: 📥 Backlog
           issue-number: ${{ steps.create-firefox-issue.outputs.number }}
 
